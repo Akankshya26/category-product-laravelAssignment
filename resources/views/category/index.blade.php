@@ -47,3 +47,4 @@
         @endforeach
 
 </html>
+@include('footer')

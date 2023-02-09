@@ -19,7 +19,7 @@
         </div>
     </div> --}}
 
-
+@include('navigation')
 <!doctype html>
 <html lang="en">
 
@@ -71,3 +71,4 @@
 </body>
 
 </html>
+@include('footer')

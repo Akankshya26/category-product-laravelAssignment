@@ -40,7 +40,7 @@
     </form>
 </body>
 <br><br>
-<div class="container mt-5">
+<div class="container mt-4">
     <table class="table table-dark">
 
         <tr>
@@ -59,3 +59,4 @@
     </table>
 
 </html>
+@include('footer')

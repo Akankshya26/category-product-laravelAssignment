@@ -20,12 +20,11 @@ class CategoryController extends Controller
             ]
         );
         $category = Category::create($request->only('name'));
-
-        return redirect('view-category')->with('success', 'The Category has been Added successfully');
+        return redirect('view-category')
+            ->with('success', 'The Category has been Added successfully');
     }
     public function edit($id)
     {
-        // $country = Country::all();
         $category = Category::findOrFail($id);
         return view('category.edit', ['category' => $category]);
     }
@@ -36,10 +35,11 @@ class CategoryController extends Controller
                 'name'  => 'required',
             ]
         );
-        $category = Category::findOrFail($id);
+        $category       = Category::findOrFail($id);
         $category->name = $request->name;
         $category->save();
-        return redirect('view-category')->with('success', 'The Category has been Updated successfully');
+        return redirect('view-category')
+            ->with('success', 'The Category has been Updated successfully');
     }
     public function destroy($id)
     {

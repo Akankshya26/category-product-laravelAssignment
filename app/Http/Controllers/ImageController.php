@@ -12,13 +12,12 @@ class ImageController extends Controller
     public function viewImage()
     {
         $products = Product::all();
-
-        // $images = Product::with('img')->get();
-
         return view('image.index', ['products' => $products]);
     }
     public function storeImage(Request $request)
     {
+        // single image upload
+
         // dd($request->id);
         // $this->validate($request, [
         //     'image' => 'required|mimes:jpg,jpeg,png,pdf'
@@ -41,10 +40,7 @@ class ImageController extends Controller
         if ($files = $request->file('image')) {
             foreach ($files as $file) {
                 $image_name =  str_replace(".", "", (string)microtime(true)) . '.' . $file->getClientOriginalExtension();
-                // $ext = \strtolower($file->getClientOriginalExtension());
-                // $image_full_name = $image_name . '.' . $ext;
                 $upload_path = 'public/images/';
-                // $image_url = $upload_path . $image_full_name;
                 $file->move($upload_path, $image_name);
                 $image[] = [
                     'product_id' => $product->id,
@@ -52,27 +48,18 @@ class ImageController extends Controller
                 ];
             }
         }
-        // Image::insert([
-        //     'image' =>   implode('|', $image),
-        //     'product_id' => $request->product_name,
-        // ]);
-        // return back();
         $product->img()->createMany($image);
-        return redirect('view-image')->with('success', 'The Image has been uploaded successfully');
+        return redirect('view-image')
+            ->with('success', 'The Image has been uploaded successfully');
     }
     public function destroy($id)
     {
         Image::destroy($id);
-        // return redirect('view-image');
         return redirect(url('view-image/' . $id));
     }
     public function image($id)
     {
-
-        // dd($id);
-        $image = ImageProduct::where('product_id', $id)->paginate(5);
-        // dd($image);
-
+        $image = ImageProduct::where('product_id', $id)->get();
         return view('image.view', ['image' => $image]);
     }
 }

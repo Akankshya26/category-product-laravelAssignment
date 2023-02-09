@@ -77,5 +77,5 @@
         </table>
 </body>
 
-
 </html>
+@include('footer')

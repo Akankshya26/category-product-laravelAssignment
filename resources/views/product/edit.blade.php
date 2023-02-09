@@ -1,3 +1,4 @@
+@include('navigation')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,3 +36,6 @@
         </div>
     </form>
 </body>
+
+</html>
+@include('footer')

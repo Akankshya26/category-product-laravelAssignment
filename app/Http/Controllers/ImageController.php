@@ -11,7 +11,7 @@ class ImageController extends Controller
 {
     public function viewImage()
     {
-        $products = Product::all();
+        $products = Product::with('img')->get();
         return view('image.index', ['products' => $products]);
     }
     public function storeImage(Request $request)
@@ -59,7 +59,8 @@ class ImageController extends Controller
     }
     public function image($id)
     {
+        $product = Product::where('id', $id)->get();
         $image = ImageProduct::where('product_id', $id)->get();
-        return view('image.view', ['image' => $image]);
+        return view('image.view', ['image' => $image, 'product' => $product]);
     }
 }

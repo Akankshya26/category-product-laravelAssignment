@@ -12,8 +12,8 @@ class ProductController extends Controller
 {
     public function viewProduct()
     {
-        $category = Category::all();
-        $product = Product::Simplepaginate(5);
+        $category = Category::get();
+        $product = Product::all();
         return view('product.index', ['product' => $product, 'category' => $category]);
     }
     public function createProduct(Request $request)
@@ -21,11 +21,14 @@ class ProductController extends Controller
         $request->validate(
             [
                 'name'    => 'required',
+                'price' => 'required',
             ]
         );
         $product = new Product;
         $product->category_id = $request->category_name;
         $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
         $product->save();
         return redirect('view-product')->with('success', 'The product has been Added successfully');
     }
@@ -40,17 +43,22 @@ class ProductController extends Controller
         $request->validate(
             [
                 'name'  => 'required',
+                'price' => 'required',
+                'description' => 'required',
+
             ]
         );
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category_id = $request->category_name;
+        $product->price = $request->price;
+        $product->description = $request->description;
         $product->save();
-        return redirect('view-product');
+        return redirect('view-product')->with('success', 'The product has been Updated successfully');
     }
     public function destroy($id)
     {
         Product::destroy($id);
-        return redirect('view-product');
+        return redirect('view-product')->with('success', 'The Image has been deleted successfully');
     }
 }

@@ -36,7 +36,7 @@
 </head>
 
 <body>
-    <h1>Product Images</h1>
+    <h1></h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -45,30 +45,45 @@
             @foreach ($image as $key => $img)
                 @if ($key == 0)
                     <div class="carousel-item active">
-                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-100"
-                            alt="...">
+                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-50" alt="...">
                     </div>
                 @else
                     <div class="carousel-item ">
-                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-100"
-                            alt="...">
+                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-50" alt="...">
                     </div>
                 @endif
             @endforeach
+
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <br>
+
+        @foreach ($product as $product)
+            <tr>Product Name:
+                <h1> {{ $product->name }}</h1>
+                Price:
+                <td>{{ $product->Price }}</td>
+            </tr>
+        @endforeach
+        <div>
+            <a href="#" class="btn btn-warning" role="button">Add To cart</a>
+            <a href="#" class="btn btn-warning" role="button">Buy Now</a>
+        </div>
     </div>
 
 </body>
+
 
 </html>
 @include('footer')

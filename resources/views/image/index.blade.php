@@ -45,18 +45,27 @@
 
         <tr>
             <th>product name</th>
+            <th>Product Price</th>
+            <th>image</th>
             <th>Action</th>
         </tr>
+        <h1></h1>
         @foreach ($products as $product)
             <tr>
                 <td>{{ $product->name }}</td>
+                <td>{{ $product->Price }}</td>
                 <td>
-                    <a href="{{ url('delete-image', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a>
+                    <img src="{{ asset('public/images/' . $product->img[0]->image_name) }}" width="70"
+                        alt="">
+                </td>
+                <td>
+                    {{-- <a href="{{ url('delete-image', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a> --}}
                     <a href="{{ url('image', $product->id) }}" class="btn btn-info btn-sm">view</a>
                 </td>
             </tr>
         @endforeach
     </table>
+
 
 </html>
 @include('footer')

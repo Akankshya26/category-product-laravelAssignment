@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -44,6 +45,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return redirect('view-category');
+        return redirect('view-category')->with('success', 'The Image has been deleted successfully');
     }
 }

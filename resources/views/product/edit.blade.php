@@ -18,12 +18,21 @@
             {{ $success }}
         </div>
     @endif
-    <form action="{{ url('update-product') }}" method="post">
+    <form action="{{ url('product-update') }}" method="post">
         @csrf
         {{ method_field('put') }}
         <div class="container mt-5">
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Entery Product name" />
+                <input type="text" name="name" class="form-control" placeholder="Entery Product name"
+                    value="{{ $product->name }}" />
+            </div>
+            <div class="mb-3">
+                <input type="text" name="Price" class="form-control" placeholder="Entery Product price"
+                    value="{{ $product->Price }}" />
+            </div>
+            <div class="mb-3">
+                <input type="text" name="description" class="form-control" placeholder="Entery Product description"
+                    value="{{ $product->description }}" />
             </div>
             <label for="category_name" class="form-label">Category Name</label>
             <select class="form-control" name="category_name" id="category_name">

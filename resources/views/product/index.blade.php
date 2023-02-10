@@ -41,6 +41,13 @@
             <div class="mb-3">
                 <input type="text" name="name" class="form-control" placeholder="Entery Product name" />
             </div>
+            <div class="mb-3">
+                <input type="number" name="price" class="form-control" placeholder="Entery Product price" />
+            </div>
+            <div class="mb-3">
+                <input type="text" name="description" class="form-control"
+                    placeholder="Entery Product description" />
+            </div>
             <label for="category_name" class="form-label">Category Name</label>
             <select class="form-control" name="category_name" id="category_name">
                 <option>Category Name</option>
@@ -57,18 +64,22 @@
 
             <tr>
                 <th>product Name</th>
+                <th>Price</th>
+                <th>Description</th>
                 <th>Category Id</th>
                 <th>Action</th>
             </tr>
-
             @foreach ($product as $product)
                 <tr>
                     <td>{{ $product['name'] }}</td>
+                    <td>{{ $product['Price'] }}</td>
+                    <td>{{ $product['description'] }}</td>
                     <td>{{ $product['category_id'] }}</td>
 
                     <td>
                         <a href="{{ url('product-edit', $product->id) }}" class="btn btn-info btn-sm">EDIT</a>
-                        <a href="{{ url('delete-product', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a>
+                        <a href="{{ url('delete-product/', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a>
+                        <a href="{{ url('image', $product->id) }}" class="btn btn-warning btn-sm">view</a>
                     </td>
 
                 </tr>

@@ -13,12 +13,14 @@
 </head>
 
 <body>
+    {{-- redirection message --}}
     @if ($success = \Session::get('success'))
         <div class="alert alert-success">
             {{ $success }}
         </div>
     @endif
-    <form action="{{ url('product-update') }}" method="post">
+    {{-- product edit form --}}
+    <form action="{{ url('product-update', $product->id) }}" method="post">
         @csrf
         {{ method_field('put') }}
         <div class="container mt-5">
@@ -27,7 +29,7 @@
                     value="{{ $product->name }}" />
             </div>
             <div class="mb-3">
-                <input type="text" name="Price" class="form-control" placeholder="Entery Product price"
+                <input type="text" name="price" class="form-control" placeholder="Entery Product price"
                     value="{{ $product->Price }}" />
             </div>
             <div class="mb-3">

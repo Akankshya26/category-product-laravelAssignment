@@ -18,4 +18,8 @@ class Product extends Model
     {
         return $this->hasMany(ImageProduct::class, 'product_id');
     }
+    public function cat()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

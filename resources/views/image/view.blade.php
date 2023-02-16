@@ -19,7 +19,7 @@
         </div>
     </div> --}}
 
-@include('navigation')
+@include('navbar')
 <!doctype html>
 <html lang="en">
 
@@ -36,20 +36,23 @@
 </head>
 
 <body>
+
+
     <h1></h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    {{-- slide image view --}}
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 50%; margin: 0 auto;">
-        <div class="carousel-inner">
+        <div class="carousel-inner product_data">
             @foreach ($image as $key => $img)
                 @if ($key == 0)
                     <div class="carousel-item active">
-                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-50" alt="...">
+                        <img src="{{ asset('public/images/' . $img->image_name) }}" style=height:280px; alt="...">
                     </div>
                 @else
                     <div class="carousel-item ">
-                        <img src="{{ asset('public/images/' . $img->image_name) }}" class="d-block w-50" alt="...">
+                        <img src="{{ asset('public/images/' . $img->image_name) }}" style=height:280px; alt="...">
                     </div>
                 @endif
             @endforeach
@@ -72,18 +75,30 @@
         @foreach ($product as $product)
             <tr>Product Name:
                 <h1> {{ $product->name }}</h1>
+                <h4>{{ $product->description }}</h4>
+                <br>
                 Price:
                 <td>{{ $product->Price }}</td>
+
+
             </tr>
         @endforeach
         <div>
             <a href="#" class="btn btn-warning" role="button">Add To cart</a>
-            <a href="#" class="btn btn-warning" role="button">Buy Now</a>
+            <a href="#" class="btn btn-warning addToCartbtn" role="button">Buy Now</a>
         </div>
     </div>
 
 </body>
+{{-- <script>
+    $(document).ready(function() {
+        $('.addToCartbtn').click(function(e) {
+            e.preventDefault();
+            var product_id = $(this).closest('.product_id')
+        });
 
+    });
+</script> --}}
 
 </html>
 @include('footer')

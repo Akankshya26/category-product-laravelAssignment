@@ -12,28 +12,17 @@
     <link href="sweetalert.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="sweetalert.min.js" type="text/javascript"></script>
-    <script type='text/javascript'>
-        $(document).ready(function() {
-
-            // Message
-            $("#but1").click(function() {
-                var message = $("#message").val();
-                if (message == "") {
-                    message = "Your message";
-                }
-                swal(message);
-            });
-        });
-    </script>
     <title>Product Management</title>
 </head>
 
 <body>
+    {{-- redirection message --}}
     @if ($success = \Session::get('success'))
         <div class="alert alert-success">
             {{ $success }}
         </div>
     @endif
+    {{-- product create form --}}
     <form action="{{ url('create-product') }}" method="post">
         @csrf
         @method('post')
@@ -61,7 +50,7 @@
 
     <div class="container mt-5">
         <table class="table table-dark">
-
+            {{-- display product table --}}
             <tr>
                 <th>product Name</th>
                 <th>Price</th>
@@ -78,7 +67,7 @@
 
                     <td>
                         <a href="{{ url('product-edit', $product->id) }}" class="btn btn-info btn-sm">EDIT</a>
-                        <a href="{{ url('delete-product/', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a>
+                        <a href="{{ url('delete-product', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a>
                         <a href="{{ url('image', $product->id) }}" class="btn btn-warning btn-sm">view</a>
                     </td>
 

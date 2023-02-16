@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use App\Models\Image;
-use App\Models\ImageProduct;
 use App\Models\Product;
+use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+    // image view page
     public function viewImage()
     {
         $products = Product::with('img')->get();
         return view('image.index', ['products' => $products]);
     }
+    //store image
     public function storeImage(Request $request)
     {
         // single image upload
@@ -57,10 +60,41 @@ class ImageController extends Controller
         Image::destroy($id);
         return redirect(url('view-image/' . $id));
     }
+    //view slide image of products
     public function image($id)
     {
         $product = Product::where('id', $id)->get();
         $image = ImageProduct::where('product_id', $id)->get();
         return view('image.view', ['image' => $image, 'product' => $product]);
+    }
+    //edit form
+    public function edit($id)
+    {
+        $products = Product::get();
+        $images = ImageProduct::where('product_id', $id)->get();
+        return view('image.edit', ['products' => $products, 'images' => $images]);
+    }
+    //image updation
+    public function update(Request $request, Product $product)
+    {
+        $data = $request->validate([
+            $image[] = [
+                'product_id' => $product->id,
+                'image_name' => $image_name,
+            ]
+        ]);
+        if ($request->hasFile('image_name')) {
+            $images = [];
+            foreach ($data['image_name'] as $image) {
+                Storage::delete($product->images);
+                $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+                $image_path =  $image->storeAs('images', $fileName, 'public');
+                array_push($images, $image_path);
+                $data['image_name'] = $images;
+                $product->update($data);
+            }
+        }
+        $product->update($data);
+        return redirect(url('view-image'));
     }
 }

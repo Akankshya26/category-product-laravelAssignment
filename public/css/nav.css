@@ -1,0 +1,145 @@
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #6036d5;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: rgb(88, 86, 86);
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #0a0b0b;
+            color: white;
+            width: 100px;
+            height: 50px;
+            margin-top: 4px;
+            margin-left: 5px;
+            margin-bottom: 4px;
+        }
+
+
+
+        .topnav .search-container {
+            float: right;
+        }
+
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 5px;
+            font-size: 17px;
+            border: none;
+        }
+
+        .topnav .search-container button {
+            float: center;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 50px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+
+        .topnav .loginbtn {
+            float: right;
+            width: 100px;
+            height: 50px;
+            margin-top: 4px;
+            margin-right: 5px;
+            margin-bottom: 4px;
+
+        }
+
+        .topnav .loginbtn {
+            background-color: #191b19;
+            color: white;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topnav.login {
+            position: relative;
+            display: inline-block;
+        }
+
+        .topnav .login-content {
+            display: none;
+            position: absolute;
+            background-color: #a8aaaa;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 0;
+            top: 47px;
+            display: none;
+            flex-direction: column;
+        }
+
+        .topnav.login-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .topnav .login-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .topnav .login:hover .login-content {
+            display: flex;
+        }
+
+        .topnav .login:hover .loginbtn {
+            background-color: #b5bdb5;
+        }
+
+
+        @media screen and (max-width: 600px) {
+            .topnav .search-container {
+                float: none;
+            }
+
+            .topnav a,
+            .topnav input[type=text],
+            .topnav .search-container button {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+
+            .topnav input[type=text] {
+                border: 1px solid #ccc;
+            }
+        }

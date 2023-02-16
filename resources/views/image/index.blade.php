@@ -13,11 +13,13 @@
 </head>
 
 <body>
+    {{-- redirection message --}}
     @if ($success = \Session::get('success'))
         <div class="alert alert-success">
             {{ $success }}
         </div>
     @endif
+    {{-- image insert form --}}
     <form action="{{ url('store-image') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('post')
@@ -42,7 +44,7 @@
 <br><br>
 <div class="container mt-4">
     <table class="table table-dark">
-
+        {{-- display image  --}}
         <tr>
             <th>product name</th>
             <th>Product Price</th>
@@ -61,6 +63,7 @@
                 <td>
                     {{-- <a href="{{ url('delete-image', $product->id) }}" class="btn btn-danger btn-sm">DELETE</a> --}}
                     <a href="{{ url('image', $product->id) }}" class="btn btn-info btn-sm">view</a>
+                    <a href="{{ url('image-edit', $product->id) }}" class="btn btn-warning  btn-sm">Edit</a>
                 </td>
             </tr>
         @endforeach
